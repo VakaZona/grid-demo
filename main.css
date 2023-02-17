@@ -5,15 +5,37 @@ body {
 .container {
 	display: grid;
 	gap: 10px;
-	grid-template-columns: [startline] 1fr 1fr 1fr [endline];
-	grid-auto-rows: 100px;
-	grid-auto-flow: dense;
+	
+	grid-template:
+    	"header header header" 200px
+    	"sidebar body body" 100px
+		". footer footer" 300px
+		/ 1fr 1fr 1fr;
 }
 
-.c1 {
-	/* grid-column: 1 / -1; */
-	grid-column-start: startline;
-	grid-column-end: endline;
+.header {
+	grid-area: header;
+}
+
+.sidebar {
+	grid-area: sidebar;
+}
+
+.body {
+	grid-area: body;
+}
+
+.footer {
+    grid-area: footer;
+}
+
+@media (max-width: 800px) {
+	.container {
+        grid-template-areas:
+		    "header header header"
+            "body body body"
+			"sidebar sidebar sidebar"
+			"footer footer footer"
 }
 
 .container > div {	
